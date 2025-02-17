@@ -37,8 +37,8 @@ Below are a few examples to help you get started.
 ```python
 from simple_dl import SimpleDownloader
 
-# Create a downloader instance with default logging
-downloader = SimpleDownloader(log_handler="default")
+# Create a downloader instance with info logging
+downloader = SimpleDownloader(log_handler="info")
 
 url = "http://example.com"
 content = downloader.get(url)
@@ -52,7 +52,7 @@ print(content)
 from simple_dl import SimpleDownloader
 
 # Enable caching (responses are stored in a SQLite database)
-downloader = SimpleDownloader(log_handler="default")
+downloader = SimpleDownloader(log_handler="info")
 
 url = "http://example.com"
 # Set cache=True to cache the response for subsequent requests.
@@ -66,7 +66,7 @@ print(content)
 ```python
 from simple_dl import SimpleDownloader
 
-downloader = SimpleDownloader(log_handler="default")
+downloader = SimpleDownloader(log_handler="info")
 
 # Download an image from the provided URL. If the image is in a lossless format,
 # and if compress_media is enabled, it will be converted to WebP.
@@ -84,7 +84,7 @@ def validate_response(data):
     # Implement your validation logic here (e.g., check if a key exists)
     return "expected_key" in data
 
-downloader = SimpleDownloader(log_handler="default", data_validator=validate_response)
+downloader = SimpleDownloader(log_handler="info", data_validator=validate_response)
 
 api_endpoint = "http://api.example.com/data"
 response_data = downloader.query_api(api_endpoint, cache=True)
@@ -104,7 +104,7 @@ from simple_dl import TorDownloader
 tor_downloader = TorDownloader(
     tor_control_ports=[9050, 9051],
     tor_proxy="socks5h://127.0.0.1:9050",
-    log_handler="default"
+    log_handler="info"
 )
 
 # Make a request through Tor.
@@ -135,7 +135,7 @@ When creating a `SimpleDownloader` instance, you can configure:
   - `user_agents`: List of user agent strings for rotation.
 
 - **Logging:**
-  - `log_handler`: Provide `"default"` for a default StreamHandler, `None` for no logging, or a custom `logging.Handler` instance.
+  - `log_handler`: Provide `"info"` for a default StreamHandler, `None` for no logging, or a custom `logging.Handler` instance.
 
 - **Custom Cache Key:**
   - `generate_key`: Provide your own function to generate a cache key from request parameters.
