@@ -2,7 +2,6 @@ import os
 import io
 import random
 import logging
-import hashlib
 import zlib
 import gzip
 import json as json_
@@ -16,6 +15,7 @@ from requests.packages.urllib3.util.retry import Retry
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from PIL import Image
 from urllib.parse import urlparse
+import xxhash
 
 from .rate_limiter import RateLimiter
 from .utils import ensure_directory_exists
@@ -480,7 +480,7 @@ class SimpleDownloader:
             "headers": headers_to_cache,
         }
         input_data = json_.dumps(request_metadata, sort_keys=True, ensure_ascii=False)
-        return hashlib.sha256(input_data.encode()).hexdigest()
+        return xxhash.xxh3_64(input_data.encode()).hexdigest()
 
     def _compress_data(self, data: str) -> bytes:
         return zlib.compress(data.encode("utf-8"), level=3)

@@ -14,6 +14,7 @@ setup(
         "requests",
         "tenacity",
         "pillow",
+        "xxhash"
     ],
     extras_require={
         'tor': ['stem', 'requests[socks]'],
