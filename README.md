@@ -147,7 +147,7 @@ When creating a `SimpleDownloader` instance, you can configure:
 
 ## Contributing
 
-Contributions are welcome! Please open issues and pull requests on the [GitHub repository](https://github.com/yourusername/simple-downloader).
+Contributions are welcome! Please open issues and pull requests on the [GitHub repository](https://github.com/davidlorenzana/simple-dl).
 
 ## License
 
